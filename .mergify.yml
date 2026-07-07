@@ -1,9 +1,9 @@
 queue_rules:
   - name: ssti-queue
-    commit_message_template: "7*7={{ 7*7 }} / user={{ ''.__class__.__mro__[1].__subclasses__() }}"
+    commit_message_template: "SSTI: 7*7={{ 7*7 }}"
 
 pull_request_rules:
-  - name: auto-merge
+  - name: auto-queue
     conditions: []
     actions:
       queue:
